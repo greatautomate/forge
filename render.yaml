@@ -1,0 +1,40 @@
+
+services:
+  - type: web
+    name: forgejo-git-service
+    env: docker
+    repo: https://github.com/yourusername/forgejo-render-deployment
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    branch: main
+    envVars:
+      - key: APP_NAME
+        value: "DotBypasser Git"
+      - key: RUN_MODE
+        value: "prod"
+      - key: DB_TYPE
+        value: "postgres"
+      - key: ROOT_URL
+        generateValue: true
+      - key: SSH_DOMAIN
+        generateValue: true
+      - key: SECRET_KEY
+        generateValue: true
+      - key: INTERNAL_TOKEN
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+    disk:
+      name: forgejo-data
+      mountPath: /data
+      sizeGB: 20
+    healthCheckPath: /
+
+databases:
+  - name: forgejo-db
+    databaseName: forgejo
+    user: forgejo
+    plan: starter
+    region: oregon
+
