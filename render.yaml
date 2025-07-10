@@ -1,13 +1,11 @@
-
 services:
   - type: web
     name: forgejo-git-service
     env: docker
-    repo: https://github.com/yourusername/forgejo-render-deployment
+    repo: https://github.com/greatautomate/forge
     dockerfilePath: ./Dockerfile
     plan: starter
     region: oregon
-    branch: main
     envVars:
       - key: APP_NAME
         value: "DotBypasser Git"
@@ -25,6 +23,22 @@ services:
         generateValue: true
       - key: JWT_SECRET
         generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: forgejo-db
+          property: host
+      - key: DB_NAME
+        fromDatabase:
+          name: forgejo-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: forgejo-db
+          property: user
+      - key: DB_PASSWD
+        fromDatabase:
+          name: forgejo-db
+          property: password
     disk:
       name: forgejo-data
       mountPath: /data
@@ -35,6 +49,5 @@ databases:
   - name: forgejo-db
     databaseName: forgejo
     user: forgejo
-    plan: starter
+    plan: starter  # \$7/month - recommended for production
     region: oregon
-
