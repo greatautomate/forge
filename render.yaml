@@ -5,7 +5,7 @@ services:
     repo: https://github.com/greatautomate/forge
     dockerfilePath: ./Dockerfile
     plan: starter
-    region: oregon
+    region: virginia
     envVars:
       - key: APP_NAME
         value: "DotBypasser Git"
@@ -49,5 +49,11 @@ databases:
   - name: forgejo-db
     databaseName: forgejo
     user: forgejo
-    plan: pro  # \$7/month - recommended for production
-    region: oregon
+    # Using flexible plan structure instead of legacy named plans
+    plan:
+      # Basic configuration suitable for small to medium Git repositories
+      storage: 10GB
+      # You can also specify other resources like:
+      # cpu: 1
+      # memory: 2GB
+    region: virginia
