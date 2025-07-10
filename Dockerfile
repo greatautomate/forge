@@ -1,4 +1,4 @@
-FROM forgejo/forgejo:1.21-rootless
+FROM forgejo/forgejo:1.21
 
 # Create necessary directories
 USER root
@@ -25,4 +25,3 @@ WORKDIR /data/forgejo
 
 # Entry point
 CMD ["/usr/local/bin/setup.sh"]
-
