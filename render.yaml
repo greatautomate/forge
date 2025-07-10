@@ -49,5 +49,5 @@ databases:
   - name: forgejo-db
     databaseName: forgejo
     user: forgejo
-    plan: starter  # \$7/month - recommended for production
+    plan: pro  # \$7/month - recommended for production
     region: oregon
